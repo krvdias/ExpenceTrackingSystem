@@ -11,6 +11,7 @@ namespace ExpenceTrackingSystem
     internal class CategoryData
     {
         string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True";
+
         public int ID { set; get; } //0
 
         public string Category { set; get; } //1
@@ -29,10 +30,13 @@ namespace ExpenceTrackingSystem
             {
                 connect.Open();
 
-                string selectData = "SELECT * FROM categories";
+                string selectData = "SELECT * FROM categories WHERE user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(selectData, connect))
                 {
+                    int getUserId = SignIn.userid;
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
+
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())

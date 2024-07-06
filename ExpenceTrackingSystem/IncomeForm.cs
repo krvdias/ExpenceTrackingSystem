@@ -14,7 +14,8 @@ namespace ExpenceTrackingSystem
 {
     public partial class IncomeForm : UserControl
     {
-        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True"; public IncomeForm()
+        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True";
+        public IncomeForm()
         {
             InitializeComponent();
 
@@ -49,13 +50,15 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
-                string selectData = "SELECT category FROM categories WHERE type = @type AND status = @status";
+                string selectData = "SELECT category FROM categories WHERE type = @type AND status = @status AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(selectData, connect))
                 {
                     cmd.Parameters.AddWithValue("@type", "Income");
                     cmd.Parameters.AddWithValue("@status", "Active");
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
 
                     category_drp.Items.Clear();
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -82,7 +85,8 @@ namespace ExpenceTrackingSystem
                 {
                     connect.Open();
 
-                    string insertData = "INSERT INTO income (category, item, income, description, date_income, date_insert) " + " VALUES(@category, @item, @income, @description, @date_income, @date)";
+                    string insertData = "INSERT INTO income (category, item, income, description, date_income, date_insert, user_id) " + " VALUES(@category, @item, @income, @description, @date_income, @date, @user_id)";
+                    int getUserId = SignIn.userid;
 
                     using (SqlCommand cmd = new SqlCommand(insertData, connect))
                     {
@@ -94,6 +98,8 @@ namespace ExpenceTrackingSystem
 
                         DateTime today = DateTime.Today;
                         cmd.Parameters.AddWithValue("@date", today);
+
+                        cmd.Parameters.AddWithValue("@user_id", getUserId);
 
                         cmd.ExecuteNonQuery();
                         clearFields();

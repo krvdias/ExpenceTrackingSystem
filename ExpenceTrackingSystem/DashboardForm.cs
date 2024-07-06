@@ -61,13 +61,15 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
-                string query = "SELECT SUM(income) FROM income WHERE date_income = @date_income";
+                string query = "SELECT SUM(income) FROM income WHERE date_income = @date_income AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
                     DateTime today = DateTime.Today;
                     cmd.Parameters.AddWithValue("@date_income", today);
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
 
                     object result = cmd.ExecuteScalar();
 
@@ -90,11 +92,14 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
-                string query = "SELECT SUM(income) FROM income WHERE CONVERT(DATE, date_income) = DATEADD(day, DATEDIFF(day, 0, GETDATE()), -1)";
+                string query = "SELECT SUM(income) FROM income WHERE CONVERT(DATE, date_income) = DATEADD(day, DATEDIFF(day, 0, GETDATE()), -1) AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
+
                     object result = cmd.ExecuteScalar();
 
                     if (result != DBNull.Value)
@@ -117,15 +122,17 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
                 DateTime today = DateTime.Now.Date;
                 DateTime startMonth = new DateTime(today.Year, today.Month, 1);
                 DateTime endMonth = startMonth.AddMonths(1).AddDays(-1);
 
-                string query = "SELECT SUM(income) FROM income WHERE date_income >= @startMonth AND date_income <= @endMonth";
+                string query = "SELECT SUM(income) FROM income WHERE date_income >= @startMonth AND date_income <= @endMonth AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
                     cmd.Parameters.AddWithValue("@startMonth", startMonth);
                     cmd.Parameters.AddWithValue("@endMonth", endMonth);
 
@@ -151,15 +158,17 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
                 DateTime today = DateTime.Now.Date;
                 DateTime startYear = new DateTime(today.Year, 1, 1);
                 DateTime endYear = startYear.AddYears(1).AddDays(-1);
 
-                string query = "SELECT SUM(income) FROM income WHERE date_income >= @startYear AND date_income <= @endYear";
+                string query = "SELECT SUM(income) FROM income WHERE date_income >= @startYear AND date_income <= @endYear AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
                     cmd.Parameters.AddWithValue("@startYear", startYear);
                     cmd.Parameters.AddWithValue("@endYear", endYear);
 
@@ -185,12 +194,14 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
-                string query = "SELECT SUM(income) FROM income";
+                string query = "SELECT SUM(income) FROM income WHERE user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
-                    
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
+
                     object result = cmd.ExecuteScalar();
 
                     if (result != DBNull.Value)
@@ -215,13 +226,15 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
-                string query = "SELECT SUM(cost) FROM expenses WHERE date_expense = @date_expense";
+                string query = "SELECT SUM(cost) FROM expenses WHERE date_expense = @date_expense AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
                     DateTime today = DateTime.Today;
                     cmd.Parameters.AddWithValue("@date_expense", today);
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
 
                     object result = cmd.ExecuteScalar();
 
@@ -244,11 +257,13 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
-                string query = "SELECT SUM(cost) FROM expenses WHERE CONVERT(DATE, date_expense) = DATEADD(day, DATEDIFF(day, 0, GETDATE()), -1)";
+                string query = "SELECT SUM(cost) FROM expenses WHERE CONVERT(DATE, date_expense) = DATEADD(day, DATEDIFF(day, 0, GETDATE()), -1) AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
                     object result = cmd.ExecuteScalar();
 
                     if (result != DBNull.Value)
@@ -271,15 +286,17 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
                 DateTime today = DateTime.Now.Date;
                 DateTime startMonth = new DateTime(today.Year, today.Month, 1);
                 DateTime endMonth = startMonth.AddMonths(1).AddDays(-1);
 
-                string query = "SELECT SUM(cost) FROM expenses WHERE date_expense >= @startMonth AND date_expense <= @endMonth";
+                string query = "SELECT SUM(cost) FROM expenses WHERE date_expense >= @startMonth AND date_expense <= @endMonth AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
                     cmd.Parameters.AddWithValue("@startMonth", startMonth);
                     cmd.Parameters.AddWithValue("@endMonth", endMonth);
 
@@ -305,17 +322,19 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
                 DateTime today = DateTime.Now.Date;
                 DateTime startYear = new DateTime(today.Year, 1, 1);
                 DateTime endYear = startYear.AddYears(1).AddDays(-1);
 
-                string query = "SELECT SUM(cost) FROM expenses WHERE date_expense >= @startYear AND date_expense <= @endYear";
+                string query = "SELECT SUM(cost) FROM expenses WHERE date_expense >= @startYear AND date_expense <= @endYear AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
                     cmd.Parameters.AddWithValue("@startYear", startYear);
                     cmd.Parameters.AddWithValue("@endYear", endYear);
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
 
                     object result = cmd.ExecuteScalar();
 
@@ -339,12 +358,13 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
-                string query = "SELECT SUM(cost) FROM expenses";
+                string query = "SELECT SUM(cost) FROM expenses WHERE user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(query, connect))
                 {
-
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
                     object result = cmd.ExecuteScalar();
 
                     if (result != DBNull.Value)

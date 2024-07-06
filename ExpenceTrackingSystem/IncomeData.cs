@@ -32,10 +32,13 @@ namespace ExpenceTrackingSystem
             {
                 connect.Open();
 
-                string selectData = "SELECT * FROM income";
+                string selectData = "SELECT * FROM income WHERE user_id = @user_id";
 
                 using(SqlCommand cmd = new SqlCommand(selectData, connect))
                 {
+                    int getUserId = SignIn.userid;
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
+
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())

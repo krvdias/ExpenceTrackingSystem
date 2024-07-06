@@ -28,6 +28,7 @@ namespace ExpenceTrackingSystem
         }
 
         public static string username;
+        public static int userid;
 
         private void login_btn_Click(object sender, EventArgs e)
         {
@@ -50,6 +51,7 @@ namespace ExpenceTrackingSystem
                     if(table.Rows.Count > 0)
                     {
                         username = user_name_text.Text;
+                        userid = Convert.ToInt32(table.Rows[0]["id"]);
 
                         MessageBox.Show("Login Successfully!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
