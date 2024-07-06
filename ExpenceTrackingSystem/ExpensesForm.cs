@@ -50,13 +50,15 @@ namespace ExpenceTrackingSystem
             using (SqlConnection connect = new SqlConnection(stringConnection))
             {
                 connect.Open();
+                int getUserId = SignIn.userid;
 
-                string selectData = "SELECT category FROM categories WHERE type = @type AND status = @status";
+                string selectData = "SELECT category FROM categories WHERE type = @type AND status = @status AND user_id = @user_id";
 
                 using (SqlCommand cmd = new SqlCommand(selectData, connect))
                 {
                     cmd.Parameters.AddWithValue("@type", "Expence");
                     cmd.Parameters.AddWithValue("@status", "Active");
+                    cmd.Parameters.AddWithValue("@user_id", getUserId);
 
                     category_drp.Items.Clear();
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -83,7 +85,8 @@ namespace ExpenceTrackingSystem
                 {
                     connect.Open();
 
-                    string insertData = "INSERT INTO expenses (category, item, cost, description, date_expense, date_insert) " + " VALUES(@category, @item, @cost, @description, @date_expense, @date)";
+                    string insertData = "INSERT INTO expenses (category, item, cost, description, date_expense, date_insert, user_id) " + " VALUES(@category, @item, @cost, @description, @date_expense, @date, @user_id)";
+                    int getUserId = SignIn.userid;
 
                     using (SqlCommand cmd = new SqlCommand(insertData, connect))
                     {
@@ -95,6 +98,8 @@ namespace ExpenceTrackingSystem
 
                         DateTime today = DateTime.Today;
                         cmd.Parameters.AddWithValue("@date", today);
+
+                        cmd.Parameters.AddWithValue("@user_id", getUserId);
 
                         cmd.ExecuteNonQuery();
                         clearFields();
