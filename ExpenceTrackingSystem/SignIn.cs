@@ -6,8 +6,8 @@ namespace ExpenceTrackingSystem
     public partial class SignIn : Form
     {
 
-        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\Documents\expenceTrackerDB.mdf"";Integrated Security=True;Connect Timeout=30";
-        
+        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True";
+
 
         public SignIn()
         {
@@ -26,6 +26,8 @@ namespace ExpenceTrackingSystem
 
             this.Hide();
         }
+
+        public static string username;
 
         private void login_btn_Click(object sender, EventArgs e)
         {
@@ -47,6 +49,8 @@ namespace ExpenceTrackingSystem
                     
                     if(table.Rows.Count > 0)
                     {
+                        username = user_name_text.Text;
+
                         MessageBox.Show("Login Successfully!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         MainForm mForm = new MainForm();

@@ -39,9 +39,12 @@
             income_btn = new Button();
             addCategory_btn = new Button();
             dashboard_btn = new Button();
-            label2 = new Label();
+            getuser = new Label();
             pictureBox2 = new PictureBox();
             panel3 = new Panel();
+            dashboardForm1 = new DashboardForm();
+            expensesForm1 = new ExpensesForm();
+            incomeForm1 = new IncomeForm();
             categoryForm1 = new CategoryForm();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -103,7 +106,7 @@
             panel2.Controls.Add(income_btn);
             panel2.Controls.Add(addCategory_btn);
             panel2.Controls.Add(dashboard_btn);
-            panel2.Controls.Add(label2);
+            panel2.Controls.Add(getuser);
             panel2.Controls.Add(pictureBox2);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 73);
@@ -139,6 +142,7 @@
             expense_btn.TabIndex = 5;
             expense_btn.Text = "Expense";
             expense_btn.UseVisualStyleBackColor = false;
+            expense_btn.Click += expense_btn_Click;
             // 
             // income_btn
             // 
@@ -153,6 +157,7 @@
             income_btn.TabIndex = 4;
             income_btn.Text = "Income";
             income_btn.UseVisualStyleBackColor = false;
+            income_btn.Click += income_btn_Click;
             // 
             // addCategory_btn
             // 
@@ -167,6 +172,7 @@
             addCategory_btn.TabIndex = 3;
             addCategory_btn.Text = "Add Category";
             addCategory_btn.UseVisualStyleBackColor = false;
+            addCategory_btn.Click += addCategory_btn_Click;
             // 
             // dashboard_btn
             // 
@@ -181,17 +187,18 @@
             dashboard_btn.TabIndex = 2;
             dashboard_btn.Text = "Dashboard";
             dashboard_btn.UseVisualStyleBackColor = false;
+            dashboard_btn.Click += dashboard_btn_Click;
             // 
-            // label2
+            // getuser
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Swis721 Hv BT", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(85, 141);
-            label2.Name = "label2";
-            label2.Size = new Size(134, 27);
-            label2.TabIndex = 1;
-            label2.Text = "WELCOME";
+            getuser.AutoSize = true;
+            getuser.Font = new Font("Swis721 Hv BT", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            getuser.ForeColor = Color.White;
+            getuser.Location = new Point(44, 141);
+            getuser.Name = "getuser";
+            getuser.Size = new Size(134, 27);
+            getuser.TabIndex = 1;
+            getuser.Text = "WELCOME";
             // 
             // pictureBox2
             // 
@@ -204,12 +211,36 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(dashboardForm1);
+            panel3.Controls.Add(expensesForm1);
+            panel3.Controls.Add(incomeForm1);
             panel3.Controls.Add(categoryForm1);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(302, 73);
             panel3.Name = "panel3";
             panel3.Size = new Size(1013, 698);
             panel3.TabIndex = 2;
+            // 
+            // dashboardForm1
+            // 
+            dashboardForm1.Location = new Point(0, 0);
+            dashboardForm1.Name = "dashboardForm1";
+            dashboardForm1.Size = new Size(1013, 872);
+            dashboardForm1.TabIndex = 14;
+            // 
+            // expensesForm1
+            // 
+            expensesForm1.Location = new Point(0, 0);
+            expensesForm1.Name = "expensesForm1";
+            expensesForm1.Size = new Size(1013, 872);
+            expensesForm1.TabIndex = 14;
+            // 
+            // incomeForm1
+            // 
+            incomeForm1.Location = new Point(0, 0);
+            incomeForm1.Name = "incomeForm1";
+            incomeForm1.Size = new Size(1013, 872);
+            incomeForm1.TabIndex = 1;
             // 
             // categoryForm1
             // 
@@ -248,7 +279,7 @@
         private PictureBox pictureBox1;
         private Panel panel2;
         private PictureBox pictureBox2;
-        private Label label2;
+        private Label getuser;
         private Button dashboard_btn;
         private Button expense_btn;
         private Button income_btn;
@@ -256,5 +287,8 @@
         private Button logout_btn;
         private Panel panel3;
         private CategoryForm categoryForm1;
+        private DashboardForm dashboardForm1;
+        private ExpensesForm expensesForm1;
+        private IncomeForm incomeForm1;
     }
 }

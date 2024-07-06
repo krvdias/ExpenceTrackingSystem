@@ -14,12 +14,23 @@ namespace ExpenceTrackingSystem
 {
     public partial class CategoryForm : UserControl
     {
-        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\Documents\expenceTrackerDB.mdf"";Integrated Security=True;Connect Timeout=30";
-        public CategoryForm()
+        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True"; public CategoryForm()
         {
             InitializeComponent();
 
             displayCategoryList();
+        }
+
+        public void refreshData()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)refreshData);
+                return;
+            }
+
+            displayCategoryList();
+
         }
 
         public void displayCategoryList()
@@ -29,6 +40,7 @@ namespace ExpenceTrackingSystem
 
             category_list.DataSource = listData;
 
+            category_list.Columns["Date"].DefaultCellStyle.Format = "MM-dd-yyyy";
         }
 
         private void category_addbtn_Click(object sender, EventArgs e)
@@ -148,7 +160,7 @@ namespace ExpenceTrackingSystem
                         using (SqlCommand cmd = new SqlCommand(deleteData, connect))
                         {
                             cmd.Parameters.AddWithValue("@id", getID);
-                            
+
                             cmd.ExecuteNonQuery();
                             clearFields();
 
@@ -160,6 +172,16 @@ namespace ExpenceTrackingSystem
                 }
             }
             displayCategoryList();
+        }
+
+        private void category_list_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void CategoryForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

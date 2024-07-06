@@ -10,8 +10,7 @@ namespace ExpenceTrackingSystem
 {
     internal class CategoryData
     {
-        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\Documents\expenceTrackerDB.mdf"";Integrated Security=True;Connect Timeout=30";
-
+        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True";
         public int ID { set; get; } //0
 
         public string Category { set; get; } //1
@@ -43,7 +42,7 @@ namespace ExpenceTrackingSystem
                         cData.Category = reader["category"].ToString();
                         cData.Type = reader["type"].ToString();
                         cData.Status = reader["status"].ToString();
-                        cData.Date = reader["date_insert"].ToString();
+                        cData.Date = ((DateTime)reader["date_insert"]).ToString("MM-dd-yyyy");
 
                         listData.Add(cData);
                     }

@@ -44,7 +44,6 @@
             panel3 = new Panel();
             label4 = new Label();
             category_list = new DataGridView();
-            panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)category_list).BeginInit();
@@ -53,10 +52,9 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonHighlight;
-            panel1.Controls.Add(panel2);
-            panel1.Location = new Point(18, 19);
+            panel1.Location = new Point(18, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(250, 660);
+            panel1.Size = new Size(250, 677);
             panel1.TabIndex = 0;
             // 
             // panel2
@@ -72,9 +70,9 @@
             panel2.Controls.Add(label2);
             panel2.Controls.Add(category_category);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(8, 8);
+            panel2.Location = new Point(18, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(250, 660);
+            panel2.Size = new Size(250, 678);
             panel2.TabIndex = 1;
             // 
             // category_deletebtn
@@ -85,7 +83,7 @@
             category_deletebtn.ForeColor = SystemColors.ButtonHighlight;
             category_deletebtn.Image = Properties.Resources.Delete;
             category_deletebtn.ImageAlign = ContentAlignment.MiddleLeft;
-            category_deletebtn.Location = new Point(18, 566);
+            category_deletebtn.Location = new Point(18, 594);
             category_deletebtn.Name = "category_deletebtn";
             category_deletebtn.Size = new Size(201, 55);
             category_deletebtn.TabIndex = 11;
@@ -101,7 +99,7 @@
             category_clearbtn.ForeColor = SystemColors.ButtonHighlight;
             category_clearbtn.Image = Properties.Resources.Broom;
             category_clearbtn.ImageAlign = ContentAlignment.MiddleLeft;
-            category_clearbtn.Location = new Point(18, 483);
+            category_clearbtn.Location = new Point(18, 508);
             category_clearbtn.Name = "category_clearbtn";
             category_clearbtn.Size = new Size(201, 55);
             category_clearbtn.TabIndex = 10;
@@ -117,7 +115,7 @@
             category_updatebtn.ForeColor = SystemColors.ButtonHighlight;
             category_updatebtn.Image = Properties.Resources.Installing_Updates;
             category_updatebtn.ImageAlign = ContentAlignment.MiddleLeft;
-            category_updatebtn.Location = new Point(18, 396);
+            category_updatebtn.Location = new Point(18, 418);
             category_updatebtn.Name = "category_updatebtn";
             category_updatebtn.Size = new Size(201, 55);
             category_updatebtn.TabIndex = 9;
@@ -134,7 +132,7 @@
             category_addbtn.ForeColor = SystemColors.ButtonHighlight;
             category_addbtn.Image = Properties.Resources.Add1;
             category_addbtn.ImageAlign = ContentAlignment.MiddleLeft;
-            category_addbtn.Location = new Point(18, 311);
+            category_addbtn.Location = new Point(18, 330);
             category_addbtn.Name = "category_addbtn";
             category_addbtn.Size = new Size(201, 55);
             category_addbtn.TabIndex = 8;
@@ -205,9 +203,9 @@
             panel3.BackColor = SystemColors.ButtonHighlight;
             panel3.Controls.Add(label4);
             panel3.Controls.Add(category_list);
-            panel3.Location = new Point(291, 19);
+            panel3.Location = new Point(291, 1);
             panel3.Name = "panel3";
-            panel3.Size = new Size(702, 660);
+            panel3.Size = new Size(702, 677);
             panel3.TabIndex = 1;
             // 
             // label4
@@ -242,19 +240,21 @@
             category_list.ReadOnly = true;
             category_list.RowHeadersVisible = false;
             category_list.RowHeadersWidth = 51;
-            category_list.Size = new Size(672, 594);
+            category_list.Size = new Size(672, 613);
             category_list.TabIndex = 0;
             category_list.CellClick += category_list_CellClick;
+            category_list.CellContentClick += category_list_CellContentClick;
             // 
             // CategoryForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(panel2);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Name = "CategoryForm";
             Size = new Size(1013, 698);
-            panel1.ResumeLayout(false);
+            Load += CategoryForm_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
