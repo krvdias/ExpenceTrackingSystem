@@ -14,11 +14,21 @@ namespace ExpenceTrackingSystem
 {
     public partial class DashboardForm : UserControl
     {
-        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True";
+        //// Define the default path for your database
+        //private readonly string defaultPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExpenceTraker", "ExpenceTrackerDB.mdf");
+
+        //// Construct the connection string
+        //private readonly string stringConnection;
+
+
+        string stringConnection = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\c# projects\Expence Traker\new Code\ExpenceTrackingSystem\ExpenceTrackerDB.mdf"";Integrated Security=True";
 
         public DashboardForm()
         {
             InitializeComponent();
+
+            //// Initialize the connection string with the default path
+            //stringConnection = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""{defaultPath}"";Integrated Security=True";
 
             incomeTodayIncome();
             incomeYesterdayIncome();
@@ -31,6 +41,7 @@ namespace ExpenceTrackingSystem
             expenseThisMonth();
             expenseThisYear();
             totalExpense();
+            balance();
         }
 
         public void refreshData()
@@ -52,6 +63,7 @@ namespace ExpenceTrackingSystem
             expenseThisMonth();
             expenseThisYear();
             totalExpense();
+            balance();
         }
 
         //Income
@@ -207,7 +219,7 @@ namespace ExpenceTrackingSystem
                     if (result != DBNull.Value)
                     {
                         decimal totalCost = Convert.ToDecimal(result);
-
+                        totalIncom = totalCost;
                         total_income.Text = "Rs." + totalCost.ToString("0.00");
                     }
                     else
@@ -353,6 +365,9 @@ namespace ExpenceTrackingSystem
             }
         }
 
+        public static decimal totalExpence;
+        public static decimal totalIncom;
+
         public void totalExpense()
         {
             using (SqlConnection connect = new SqlConnection(stringConnection))
@@ -370,7 +385,7 @@ namespace ExpenceTrackingSystem
                     if (result != DBNull.Value)
                     {
                         decimal totalCost = Convert.ToDecimal(result);
-
+                        totalExpence = totalCost;
                         total_expense.Text = "Rs." + totalCost.ToString("0.00");
                     }
                     else
@@ -378,6 +393,25 @@ namespace ExpenceTrackingSystem
                         total_expense.Text = "Rs. 0.00";
                     }
                 }
+            }
+        }
+
+        public void balance()
+        {
+            decimal balance = totalIncom - totalExpence;
+            balance_txt.Text = "Rs." + balance.ToString("0.00");
+
+            if (balance > 0)
+            {
+                balance_txt.ForeColor = Color.LightGreen;
+            }
+            else if (balance < 0)
+            {
+                balance_txt.ForeColor = Color.Red;
+            }
+            else
+            {
+                balance_txt.ForeColor = Color.White; // Neutral color for zero balance
             }
         }
 

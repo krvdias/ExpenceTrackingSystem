@@ -74,6 +74,11 @@
             total_expense = new Label();
             pictureBox10 = new PictureBox();
             label21 = new Label();
+            panel15 = new Panel();
+            balance_txt = new Label();
+            pictureBox11 = new PictureBox();
+            panel16 = new Panel();
+            label5 = new Label();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -98,6 +103,9 @@
             panel12.SuspendLayout();
             panel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
+            panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
+            panel16.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -488,9 +496,9 @@
             panel11.BackColor = SystemColors.ButtonHighlight;
             panel11.Controls.Add(panel13);
             panel11.Controls.Add(label3);
-            panel11.Location = new Point(27, 482);
+            panel11.Location = new Point(25, 482);
             panel11.Name = "panel11";
-            panel11.Size = new Size(472, 193);
+            panel11.Size = new Size(309, 193);
             panel11.TabIndex = 2;
             // 
             // panel13
@@ -500,7 +508,7 @@
             panel13.Controls.Add(pictureBox9);
             panel13.Location = new Point(23, 51);
             panel13.Name = "panel13";
-            panel13.Size = new Size(423, 127);
+            panel13.Size = new Size(260, 127);
             panel13.TabIndex = 8;
             // 
             // total_income
@@ -538,9 +546,9 @@
             panel12.BackColor = SystemColors.ButtonHighlight;
             panel12.Controls.Add(panel14);
             panel12.Controls.Add(label21);
-            panel12.Location = new Point(515, 482);
+            panel12.Location = new Point(341, 482);
             panel12.Name = "panel12";
-            panel12.Size = new Size(472, 193);
+            panel12.Size = new Size(322, 193);
             panel12.TabIndex = 9;
             // 
             // panel14
@@ -550,7 +558,7 @@
             panel14.Controls.Add(pictureBox10);
             panel14.Location = new Point(23, 51);
             panel14.Name = "panel14";
-            panel14.Size = new Size(423, 127);
+            panel14.Size = new Size(273, 127);
             panel14.TabIndex = 8;
             // 
             // total_expense
@@ -583,10 +591,61 @@
             label21.TabIndex = 5;
             label21.Text = "Total Expense";
             // 
+            // panel15
+            // 
+            panel15.BackColor = Color.MidnightBlue;
+            panel15.Controls.Add(balance_txt);
+            panel15.Controls.Add(pictureBox11);
+            panel15.Location = new Point(23, 51);
+            panel15.Name = "panel15";
+            panel15.Size = new Size(273, 127);
+            panel15.TabIndex = 8;
+            // 
+            // balance_txt
+            // 
+            balance_txt.AutoSize = true;
+            balance_txt.Font = new Font("Arial Rounded MT Bold", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            balance_txt.ForeColor = SystemColors.ButtonHighlight;
+            balance_txt.Location = new Point(99, 30);
+            balance_txt.Name = "balance_txt";
+            balance_txt.Size = new Size(26, 27);
+            balance_txt.TabIndex = 6;
+            balance_txt.Text = "0";
+            // 
+            // pictureBox11
+            // 
+            pictureBox11.Image = Properties.Resources.Card_Payment;
+            pictureBox11.Location = new Point(21, 39);
+            pictureBox11.Name = "pictureBox11";
+            pictureBox11.Size = new Size(50, 50);
+            pictureBox11.TabIndex = 1;
+            pictureBox11.TabStop = false;
+            // 
+            // panel16
+            // 
+            panel16.BackColor = SystemColors.ButtonHighlight;
+            panel16.Controls.Add(panel15);
+            panel16.Controls.Add(label5);
+            panel16.Location = new Point(670, 482);
+            panel16.Name = "panel16";
+            panel16.Size = new Size(322, 193);
+            panel16.TabIndex = 10;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label5.Location = new Point(23, 15);
+            label5.Name = "label5";
+            label5.Size = new Size(75, 25);
+            label5.TabIndex = 5;
+            label5.Text = "Balance";
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(panel16);
             Controls.Add(panel12);
             Controls.Add(panel11);
             Controls.Add(panel6);
@@ -631,6 +690,11 @@
             panel14.ResumeLayout(false);
             panel14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
+            panel15.ResumeLayout(false);
+            panel15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
+            panel16.ResumeLayout(false);
+            panel16.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -682,5 +746,10 @@
         private Label total_expense;
         private PictureBox pictureBox10;
         private Label label21;
+        private Panel panel15;
+        private Label balance_txt;
+        private PictureBox pictureBox11;
+        private Panel panel16;
+        private Label label5;
     }
 }

@@ -13,10 +13,26 @@ namespace ExpenceTrackingSystem
 {
     public partial class Register : Form
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True");
+        //// Define the default path for your database
+        //private readonly string defaultPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExpenceTraker", "ExpenceTrackerDB.mdf");
+
+        //// Construct the connection string
+        //private readonly string stringConnection;
+
+        //// Initialize the connection with the constructed connection string
+        //private readonly SqlConnection connect;
+
+        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\c# projects\Expence Traker\new Code\ExpenceTrackingSystem\ExpenceTrackerDB.mdf"";Integrated Security=True");
+
         public Register()
         {
             InitializeComponent();
+
+            //// Initialize the connection string with the default path
+            //stringConnection = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""{defaultPath}"";Integrated Security=True";
+
+            //// Initialize the SqlConnection object with the constructed connection string
+            //connect = new SqlConnection(stringConnection);
         }
 
         public bool checkConnection()
@@ -71,7 +87,7 @@ namespace ExpenceTrackingSystem
                             {
                                 MessageBox.Show("Invalid password, at least 8 characters are needed", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
-                            else if (Password_text.Text != Password_text.Text)
+                            else if (confirm_pasword_text.Text != Password_text.Text)
                             {
                                 MessageBox.Show("Password does not match", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }

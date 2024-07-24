@@ -10,7 +10,20 @@ namespace ExpenceTrackingSystem
 {
     internal class ExpensesData
     {
-        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True";
+        //// Define the default path for your database
+        //private readonly string defaultPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExpenceTraker", "ExpenceTrackerDB.mdf");
+
+        //// Construct the connection string
+        //private readonly string stringConnection;
+
+        //public ExpensesData()
+        //{
+        //    // Initialize the connection string with the default path
+        //    stringConnection = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""{defaultPath}"";Integrated Security=True";
+        //}
+
+        string stringConnection = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\c# projects\Expence Traker\new Code\ExpenceTrackingSystem\ExpenceTrackerDB.mdf"";Integrated Security=True";
+
         public int ID { get; set; }
 
         public string Category { get; set; }

@@ -14,10 +14,20 @@ namespace ExpenceTrackingSystem
 {
     public partial class IncomeForm : UserControl
     {
-        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True";
+        //// Define the default path for your database
+        //private readonly string defaultPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExpenceTraker", "ExpenceTrackerDB.mdf");
+
+        //// Construct the connection string
+        //private readonly string stringConnection;
+
+        string stringConnection = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\c# projects\Expence Traker\new Code\ExpenceTrackingSystem\ExpenceTrackerDB.mdf"";Integrated Security=True";
+
         public IncomeForm()
         {
             InitializeComponent();
+
+            //// Initialize the connection string with the default path
+            //stringConnection = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""{defaultPath}"";Integrated Security=True";
 
             displayCategoryList();
 
@@ -81,6 +91,20 @@ namespace ExpenceTrackingSystem
             }
             else
             {
+                // Validate item_txt.Text to contain only letters
+                if (!System.Text.RegularExpressions.Regex.IsMatch(item_txt.Text, @"^[a-zA-Z\s]+$"))
+                {
+                    MessageBox.Show("You can only add words in the item field.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validate cost_txt.Text to contain only numbers
+                if (!System.Text.RegularExpressions.Regex.IsMatch(income_txt.Text, @"^\d+(\.\d{1,2})?$"))
+                {
+                    MessageBox.Show("You can only add numbers in the income field.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 using (SqlConnection connect = new SqlConnection(stringConnection))
                 {
                     connect.Open();
@@ -136,7 +160,21 @@ namespace ExpenceTrackingSystem
             }
             else
             {
-                if(MessageBox.Show("Are you sure you want to Update ID:" + getID + "?", "Confirmation Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                // Validate item_txt.Text to contain only letters
+                if (!System.Text.RegularExpressions.Regex.IsMatch(item_txt.Text, @"^[a-zA-Z\s]+$"))
+                {
+                    MessageBox.Show("You can only add words in the item field.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validate cost_txt.Text to contain only numbers
+                if (!System.Text.RegularExpressions.Regex.IsMatch(income_txt.Text, @"^\d+(\.\d{1,2})?$"))
+                {
+                    MessageBox.Show("You can only add numbers in the income field.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (MessageBox.Show("Are you sure you want to Update ID:" + getID + "?", "Confirmation Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     using (SqlConnection connect = new SqlConnection(stringConnection))
                     {

@@ -94,9 +94,9 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(29, 159);
             label2.Name = "label2";
-            label2.Size = new Size(208, 26);
+            label2.Size = new Size(206, 26);
             label2.TabIndex = 1;
-            label2.Text = "Expence Tracker";
+            label2.Text = "Expense Tracker";
             // 
             // pictureBox1
             // 

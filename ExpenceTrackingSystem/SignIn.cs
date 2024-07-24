@@ -6,12 +6,20 @@ namespace ExpenceTrackingSystem
     public partial class SignIn : Form
     {
 
-        string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Vishan Dias\source\repos\ExpenceTrackingSystem\ExpenceTrackingSystem\Database1.mdf"";Integrated Security=True";
+        //// Define the default path for your database
+        //private readonly string defaultPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExpenceTraker", "ExpenceTrackerDB.mdf");
 
+        //// Construct the connection string
+        //private readonly string stringConnection;
+
+        string stringConnection = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\c# projects\Expence Traker\new Code\ExpenceTrackingSystem\ExpenceTrackerDB.mdf"";Integrated Security=True";
 
         public SignIn()
         {
             InitializeComponent();
+
+            //// Initialize the connection string with the default path
+            //stringConnection = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""{defaultPath}"";Integrated Security=True";
         }
 
         private void label1_Click(object sender, EventArgs e)
